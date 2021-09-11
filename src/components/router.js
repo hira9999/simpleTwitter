@@ -3,18 +3,22 @@ import {
     BrowserRouter as Router,
     Switch,
     Route,
-    Link
   } from "react-router-dom";
   import Home from "../route/home"
   import Auth from "../route/auth"
+import Profile from '../route/profile';
   
-const AppRouter = ({isLoggedIn}) => {
+const AppRouter = ({isLoggedIn, userObj}) => {
     return(
     <Router>
         <Switch>
-            {isLoggedIn ? (<Route exact path="/">
-                <Home />
-            </Route>) : (<Route exact path="/">
+            {isLoggedIn ? (<><Route exact path="/">
+                <Home userObj={userObj}/>
+            </Route>
+            <Route exact path="/profile">
+            <Profile />
+        </Route></>
+            ) : (<Route exact path="/">
                 <Auth />
             </Route>)}
         </Switch>
